@@ -1,14 +1,13 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class RemoveElementAnsMoveZerosToEnd {
+public class RemoveElementAndMoveZerosToEnd {
     //Remove Element and Move Zeros to End
     public  static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the size of an array : ");
         int n = sc.nextInt();
         int[] arr = new int[n];
-        int[] ans = new int[n];
 
         //Checking for valid array size
         if (arr == null || n < 2){
@@ -20,13 +19,23 @@ public class RemoveElementAnsMoveZerosToEnd {
             System.out.print("Enter the index "+i+" value : ");
             arr[i] = sc.nextInt();
         }
+
+        //taking input the target value
+        System.out.print("Enter the target value : ");
+        int t = sc.nextInt();
         int idx = 0;
         for (int i = 0; i < n; i++) {
-            if (arr[i] != 0){
-                ans[idx] = arr[i];
-                idx++;
+            if (arr[i] !=t ){
+                arr[idx++] = arr[i];
             }
         }
-        System.out.println(Arrays.toString(ans));
+
+        //Here we are printing the vlaues except the target value
+        System.out.print("Modified array : [");
+        for (int i = 0; i < idx; i++) {
+            System.out.print(arr[i] + (i < idx-1 ? ", ":""));
+        }
+        System.out.println("]");
+        System.out.println("New length of array : "+idx);
     }
 }
