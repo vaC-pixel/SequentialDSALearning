@@ -10,11 +10,11 @@ public class RvrseArrInPlace {
         int[] arr =new int[size];
         int n = arr.length;
 
+        //Checking for array validation
         if (arr == null || n == 0 || n == 1){
             System.out.println("Array is too small");
             return;
         }
-
         //Taking array value in input from user
         for (int i = 0; i < n; i++) {
             System.out.print("Enter the index "+i+" value : ");
