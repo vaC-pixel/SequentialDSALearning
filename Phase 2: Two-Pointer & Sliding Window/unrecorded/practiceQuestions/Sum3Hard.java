@@ -8,5 +8,11 @@ public class Sum3Hard {
     // You fix one number with an outer loop, and then use a
     // left and right pointer on the remaining subarray to hunt
     // down the matching pair while handling duplicate values gracefully.
+    public static void main(String[] args){
+        int[] arr = {-1, 0, 1, 2, -1, -4};
+        int n = arr.length;
+        int l = 0, mid = 0,r = n-1;
 
+
+    }
 }
