@@ -28,33 +28,40 @@ public class WhilePractice {
     // and also elaborate its purpose.
 
     public static void main(String[] args){
-        int[] arr = {-1, 0, 1, 2, -1, -4};
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the size of an array : ");
+        int size = sc.nextInt();
+        int[] arr = new int[size];
+        int n =arr.length;
+        if (arr == null||n <2) {
+            System.out.println("Array is too small");
+            return;
+        }
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter the index "+i+" value : ");
+            arr[i] = sc.nextInt();
+        }
         Arrays.sort(arr);
         System.out.println(Arrays.toString(arr));
-        int n = arr.length;
-        List<List<Integer>> result = new ArrayList<>();
-        for (int i = 0; i < n-2; i++) {
-            if (i > 0 && arr[i] == arr[i-1]){
-                continue;
-            }
-            int left = i+1;
-            int right = n-1;
-            while (left < right){
-                int sum = arr[i] + arr[left] + arr[right];
-                if (sum == 0){
-                    result.add(Arrays.asList(arr[i], arr[left], arr[right]));
-                    while (left < right && arr[left] == arr[left +1]) left++;
-                    while (left < right && arr[right] == arr[right -1]) right--;
-                    left++;
-                    right--;
-                }else if (sum < 0){
-                    left++;
-                }else {
-                    right--;
-                }
-            }
+        System.out.print("Enter the target element you wanna search : ");
+        int t = sc.nextInt();
+
+        int s =0, e = n-1, ans =-1;
+        while (s <= e){
+            int m = (s + e)/2;
+            if (arr[m] == t){
+                ans = m;
+                break;
+            } else if (arr[m] < t)
+                s = m +1;
+            else
+                e = m-1;
         }
-        System.out.println(result);
+        if (ans != -1)
+            System.out.println(("your answer is found at " + ans));
+        else
+            System.out.println((ans + " your answer is not found"));
+
 
 
     }
