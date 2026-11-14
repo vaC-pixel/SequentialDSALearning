@@ -19,6 +19,7 @@ public class LCQ_704_BinarySearch {
                 end = mid-1;
             }
         }
+
         return ans;
     }
     public static void main(String[] args){
