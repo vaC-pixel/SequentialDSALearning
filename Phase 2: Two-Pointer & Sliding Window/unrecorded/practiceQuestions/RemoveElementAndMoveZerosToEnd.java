@@ -25,11 +25,26 @@ public class RemoveElementAndMoveZerosToEnd {
         int t = sc.nextInt();
         int idx = 0;
         for (int i = 0; i < n; i++) {
+            //Putting the values in arr except the target element.
             if (arr[i] !=t ){
                 arr[idx++] = arr[i];
             }
         }
-
+        //--------//
+        System.out.println(Arrays.toString(arr));
+        int st = 0, end = arr.length-1, mid = 0;
+        while (st < end){
+            if (arr[mid] == 0){
+                arr[st++] = arr[mid];
+            }else if (arr[mid] == 2){
+                arr[end--] = arr[mid];
+            }else{
+                st++;
+                end--;
+            }
+        }
+        System.out.println(Arrays.toString(arr));
+        //-------//
         //Here we are printing the vlaues except the target value
         System.out.print("Modified array : [");
         for (int i = 0; i < idx; i++) {

@@ -2,7 +2,17 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class RvrseArrInPlace {
-    //Reverse an array using two pointer approach
+    //Intuition :
+    //Reverse an array in place without using another.
+
+    //# Approach :
+    //We will use two pointers which will stand both ends of the array.
+    //We will swap last index element (end) to the first index element(st).Then,
+    //Increase the st by one and decrease end by one.
+    //Then,we will swap the st+1 to end-1 and so on.
+    //We will run loop until st is smaller than end.
+
+    //# Code :
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the size of an array : ");

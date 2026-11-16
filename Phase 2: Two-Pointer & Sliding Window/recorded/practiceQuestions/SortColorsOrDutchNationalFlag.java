@@ -3,11 +3,12 @@ import java.util.Scanner;
 
 public class SortColorsOrDutchNationalFlag {
 
+    //# Intuition :
     //5. Sort Colors / Dutch National Flag (Medium)The Goal:
     // Given an array containing only 0s, 1s, and 2s, sort them
     // in-place in a single pass ($O(N)$ time).The Two-Pointer
 
-    // Mechanics:
+    // #Approach / Mechanics:
     // This actually uses three pointers (low, mid, high) to partition
     // the array into three distinct sections on the fly.
 

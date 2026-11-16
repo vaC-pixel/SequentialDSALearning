@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class LC283 {
     public static void main(String[] args){
     // Given an integer array nums, move all 0's to the end of it
