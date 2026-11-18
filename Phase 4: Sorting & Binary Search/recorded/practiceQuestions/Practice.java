@@ -5,19 +5,20 @@ public class Practice {
         int n = nums.length;
         int s = 0, e = n-1;
         int ans = -1;
-        while (s < e ){
+        while (s <= e ){
             int m  = s+(e-s)/2;
-            if (nums[m] != t){
+            if (nums[m] == t){
+               ans = m;
+               if (isFirst){
+                   e = m-1;
+               }else {
+                   s = m+1;
+               }
+            }else {
                 if (nums[m] < t){
                     s = m+1;
                 }else{
                     e = m-1;
-                }
-            }else {
-                if (isFirst){
-                    return m-1;
-                }else {
-                    return m;
                 }
             }
         }
