@@ -1,17 +1,15 @@
 public class Practice {
-    public static int findMin(int[] nums) {
-        int n = nums.length;
-        int st = 0, end = n-1, min = 0;
-        while(st < end){
-            min = Math.min(nums[st] , nums[end]);
-            st++;
-            end--;
-        }
-        return min;
+    public static int findMin(int[] nums, int t) {
+
+        return -1;
     }
     public static void main(String[] args){
-        int[] nums = {3, 4, 5, 1, 2};
-        int n = nums.length;
-        System.out.println(findMin(nums));
+        int[] nums = {11, 4, 5, 1, 2};
+        int t = 4;
+        for (int i = 0; i < nums.length; i++) {
+            nums[0] = nums[0]/2;
+            System.out.println(nums[0]);
+        }
+        System.out.println(7%2);
     }
 }
