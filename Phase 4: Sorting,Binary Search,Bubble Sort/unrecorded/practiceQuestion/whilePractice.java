@@ -7,17 +7,17 @@ public class whilePractice {
         arr[j] = temp;
     }
     public static  void main (String[] args){
-        int[] arr = new int[]{1, 2, 3, 4, 5, 6, 7};
+        //insertion sort
+        int[] arr = new int[]{7,6,5,4,3,2,1};
         int n = arr.length;
-        boolean isSort = false;
-        for (int i = n-1; i >= 0 ; i--) {
-            int max = i;
-            for (int j = i-1; j >=0; j--) {
-                if (arr[j] < arr[max]){
-                    max = j;
-                }
-                swap(i, j , arr);
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int prev = i-1;
+            while (prev >= 0 && arr[prev] > key){
+                arr[prev+1] =arr[prev];
+                prev--;
             }
+            arr[prev+1] = key;
         }
         System.out.println(Arrays.toString(arr));
     }
