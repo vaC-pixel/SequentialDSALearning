@@ -1,34 +1,24 @@
 import java.util.Arrays;
 
 public class whilePractice {
-    public static int search(int[] nums, int t) {
-        int ans = -1;
-        int n =nums.length;
-        int s = 0, e = n-1;
-        while (s<=e){
-            int m = s+(e-s)/2;
-                if(nums[m] == t){
-                    return m;
-                }
-                if (nums[s] <= nums[m]){
-                    if (nums[s] <= t && t < nums[m]){
-                        e = m-1;
-                    }else {
-                        s = m+1;
-                    }
-                }else {
-                    if (nums[e] > t && t <= nums[m]){
-                        s = m+1;
-                    }else{
-                        e = m-1;
-                    }
-                }
-        }
-        return(ans);
+    public static void swap(int i , int j , int[] arr) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
     public static  void main (String[] args){
-        int[] nums = new int[]{4, 5, 6, 7, 0, 1, 2};
-        int t = 0;
-        System.out.println(search(nums, t));
+        int[] arr = new int[]{1, 2, 3, 4, 5, 6, 7};
+        int n = arr.length;
+        boolean isSort = false;
+        for (int i = n-1; i >= 0 ; i--) {
+            int max = i;
+            for (int j = i-1; j >=0; j--) {
+                if (arr[j] < arr[max]){
+                    max = j;
+                }
+                swap(i, j , arr);
+            }
+        }
+        System.out.println(Arrays.toString(arr));
     }
 }
