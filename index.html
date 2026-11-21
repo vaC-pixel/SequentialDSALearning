@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DSA Master Mental Blueprint</title>
+    <style>
+        :root {
+            --bg-primary: #111111;
+            --bg-surface: #1c1c1c;
+            --bg-glass: rgba(28, 28, 28, 0.72);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-accent: rgba(255, 121, 46, 0.35);
+            --accent-orange: #ff792e;
+            --accent-orange-glow: rgba(255, 121, 46, 0.16);
+            --accent-olive: #556b2f;
+            --accent-forest: #3b5a3c;
+            --text-primary: #f3f4f6;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --ease-fluid: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+            line-height: 1.6;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                    radial-gradient(circle at 12% 8%, rgba(59, 90, 60, 0.18), transparent 38%),
+                    radial-gradient(circle at 88% 15%, rgba(255, 121, 46, 0.12), transparent 36%),
+                    var(--bg-primary);
+            padding: 2.5rem 1.25rem 4rem;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: var(--bg-glass);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 2rem 2.25rem;
+            margin-bottom: 1.75rem;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+            transition: border-color 0.35s var(--ease-fluid);
+        }
+
+        header:hover {
+            border-color: var(--border-accent);
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+            background: var(--accent-orange-glow);
+            border: 1px solid var(--border-accent);
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            margin-bottom: 0.85rem;
+        }
+
+        h1 {
+            font-size: clamp(1.75rem, 3vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            max-width: 72ch;
+            font-size: 0.98rem;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.75rem;
+        }
+
+        .nav-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .nav-pills a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            padding: 0.45rem 0.9rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s var(--ease-fluid);
+        }
+
+        .nav-pills a:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1 1 260px;
+            max-width: 340px;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 0.55rem 0.95rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s var(--ease-fluid), box-shadow 0.3s var(--ease-fluid);
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 3px var(--accent-orange-glow);
+        }
+
+        section {
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.75rem;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+            transition: transform 0.35s var(--ease-fluid), border-color 0.35s var(--ease-fluid);
+        }
+
+        section:hover {
+            border-color: rgba(255, 255, 255, 0.14);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.15rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .section-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(59, 90, 60, 0.35);
+            border: 1px solid rgba(85, 107, 47, 0.6);
+            color: #a3e635;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        thead {
+            background: rgba(17, 17, 17, 0.85);
+        }
+
+        th {
+            padding: 0.85rem 1rem;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-subtle);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--border-subtle);
+            color: #e4e4e7;
+            vertical-align: top;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr {
+            transition: background-color 0.25s var(--ease-fluid);
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 121, 46, 0.06);
+        }
+
+        .algo-name {
+            font-weight: 700;
+            color: var(--accent-orange);
+            white-space: nowrap;
+        }
+
+        .complexity {
+            font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+            font-size: 0.82rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.2rem 0.45rem;
+            border-radius: 6px;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        code {
+            font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+            font-size: 0.82rem;
+            color: #fdba74;
+            background: rgba(255, 121, 46, 0.1);
+            padding: 0.12rem 0.35rem;
+            border-radius: 5px;
+        }
+
+        .hidden-row {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <span class="badge">Systems &amp; Algorithms Reference</span>
+        <h1>DSA Master Mental Blueprint</h1>
+        <p class="subtitle">
+            A single-glance reference sheet mapping core algorithms and data structure patterns to their physical action, core invariant, time/space complexity, and engineering trade-offs.
+        </p>
+    </header>
+
+    <div class="controls">
+        <nav class="nav-pills" aria-label="Section navigation">
+            <a href="#sorting">1. Sorting</a>
+            <a href="#arrays-search">2. Arrays &amp; Search</a>
+            <a href="#linear">3. Linear Structures</a>
+            <a href="#trees-graphs">4. Trees &amp; Graphs</a>
+            <a href="#dp-backtracking">5. Recursion &amp; DP</a>
+        </nav>
+        <div class="search-box">
+            <input type="text" id="filterInput" placeholder="Filter by algorithm, invariant, or O(...)..." aria-label="Filter algorithms" />
+        </div>
+    </div>
+
+    <!-- 1. Sorting Algorithms -->
+    <section id="sorting">
+        <div class="section-header">
+            <span class="section-num">1</span>
+            <h2>Sorting Algorithms</h2>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>Algorithm</th>
+                    <th>Physical Action</th>
+                    <th>How It Works / Grows</th>
+                    <th>Time (Best / Worst)</th>
+                    <th>Space</th>
+                    <th>Key Trade-off</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="algo-name">Bubble Sort</td>
+                    <td>Swap out-of-order neighbors</td>
+                    <td>Largest values bubble to the <strong>right</strong> end</td>
+                    <td><span class="complexity">O(N) / O(N&sup2;)</span></td>
+                    <td><span class="complexity">O(1)</span></td>
+                    <td>Adaptive (<code>isSwap</code>), but heavy on swaps</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Selection Sort</td>
+                    <td>Scan for smallest, swap once</td>
+                    <td>Smallest values lock into the <strong>left</strong> end</td>
+                    <td><span class="complexity">O(N&sup2;) / O(N&sup2;)</span></td>
+                    <td><span class="complexity">O(1)</span></td>
+                    <td>Minimal writes (<code>O(N)</code> swaps), never stops early</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Insertion Sort</td>
+                    <td>Pick up card, shift larger right, drop in</td>
+                    <td>Sorted hand grows <strong>left-to-right</strong></td>
+                    <td><span class="complexity">O(N) / O(N&sup2;)</span></td>
+                    <td><span class="complexity">O(1)</span></td>
+                    <td>Fastest on tiny or nearly sorted arrays</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Merge Sort</td>
+                    <td>Split in half recursively, zip sorted halves</td>
+                    <td>Bottom-up merging into sorted subarrays</td>
+                    <td><span class="complexity">O(N log N) / O(N log N)</span></td>
+                    <td><span class="complexity">O(N)</span></td>
+                    <td>Guaranteed <code>O(N log N)</code> &amp; stable, needs extra RAM</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Quick Sort</td>
+                    <td>Pick a pivot, partition smaller left / larger right</td>
+                    <td>Pivot locks into exact final index</td>
+                    <td><span class="complexity">O(N log N) / O(N&sup2;)</span></td>
+                    <td><span class="complexity">O(log N)</span></td>
+                    <td>Cache-friendly &amp; in-place, bad pivots degrade speed</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Cyclic Sort</td>
+                    <td>Place <code>nums[i]</code> at exact index <code>nums[i] - 1</code></td>
+                    <td>Swaps until current slot holds its rightful value</td>
+                    <td><span class="complexity">O(N) / O(N)</span></td>
+                    <td><span class="complexity">O(1)</span></td>
+                    <td>Only works when values are in range <code>[1 ... N]</code></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 2. Array & Search Patterns -->
+    <section id="arrays-search">
+        <div class="section-header">
+            <span class="section-num">2</span>
+            <h2>Array &amp; Search Patterns</h2>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>Pattern / Algorithm</th>
+                    <th>Physical Action</th>
+                    <th>Core Invariant / Trigger</th>
+                    <th>Time</th>
+                    <th>Space</th>
+                    <th>Key Trade-off</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="algo-name">Two Pointers</td>
+                    <td>Move <code>left</code> and <code>right</code> inward or in tandem</td>
+                    <td>Sorted array or palindrome/pair-sum symmetry</td>
+                    <td><span class="complexity">O(N)</span></td>
+                    <td><span class="complexity">O(1)</span></td>
+                    <td>Turns nested <code>O(N&sup2;)</code> loops into a single pass</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Sliding Window</td>
+                    <td>Expand <code>right</code> to include, shrink <code>left</code> to fix</td>
+                    <td>Contiguous subarray/substring meeting a condition</td>
+                    <td><span class="complexity">O(N)</span></td>
+                    <td><span class="complexity">O(1)&ndash;O(K)</span></td>
+                    <td>Only works when adding/removing updates state cleanly</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Binary Search (Standard)</td>
+                    <td>Halve search space (<code>s &lt;= e</code>)</td>
+                    <td>Sorted input; discard half where target cannot live</td>
+                    <td><span class="complexity">O(log N)</span></td>
+                    <td><span class="complexity">O(1)</span></td>
+                    <td>Requires random access (<code>O(1)</code> indexing)</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Binary Search on Answer</td>
+                    <td>Guess answer <code>mid</code> in <code>[min ... max]</code>, validate</td>
+                    <td>Monotonic feasibility (<code>false, false, true, true</code>)</td>
+                    <td><span class="complexity">O(N log M)</span></td>
+                    <td><span class="complexity">O(1)</span></td>
+                    <td>Searches output range instead of input array</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Prefix Sum</td>
+                    <td>Precompute running totals (<code>pre[i] = pre[i-1] + arr[i]</code>)</td>
+                    <td>Range sum <code>[L..R]</code> becomes <code>pre[R] - pre[L-1]</code></td>
+                    <td><span class="complexity">O(N) build / O(1) query</span></td>
+                    <td><span class="complexity">O(N)</span></td>
+                    <td>Trades <code>O(N)</code> memory for instant range queries</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 3. Linear Data Structures -->
+    <section id="linear">
+        <div class="section-header">
+            <span class="section-num">3</span>
+            <h2>Linear Data Structures (Linked Lists, Stacks &amp; Queues)</h2>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>Algorithm / Pattern</th>
+                    <th>Physical Action</th>
+                    <th>Core Invariant / Trigger</th>
+                    <th>Time</th>
+                    <th>Space</th>
+                    <th>Key Trade-off</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="algo-name">Fast &amp; Slow Pointers</td>
+                    <td>Move <code>slow</code> 1 step, <code>fast</code> 2 steps</td>
+                    <td>Cycle detection or finding exact middle node</td>
+                    <td><span class="complexity">O(N)</span></td>
+                    <td><span class="complexity">O(1)</span></td>
+                    <td>Finds mid/loops without counting length first</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">In-Place List Reversal</td>
+                    <td>Flip <code>curr.next = prev</code> while advancing pointers</td>
+                    <td>Reverses pointer direction without allocating nodes</td>
+                    <td><span class="complexity">O(N)</span></td>
+                    <td><span class="complexity">O(1)</span></td>
+                    <td>Zero memory overhead, easy to drop a reference</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Monotonic Stack</td>
+                    <td>Pop elements smaller/larger than <code>curr</code> before pushing</td>
+                    <td>Stack stays strictly increasing or decreasing</td>
+                    <td><span class="complexity">O(N)</span></td>
+                    <td><span class="complexity">O(N)</span></td>
+                    <td>Solves &ldquo;Next Greater / Smaller Element&rdquo; in one pass</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">BFS Queue (Level-Order)</td>
+                    <td>Push neighbors to back, process from front (FIFO)</td>
+                    <td>Visits nodes strictly layer-by-layer by distance</td>
+                    <td><span class="complexity">O(V + E)</span></td>
+                    <td><span class="complexity">O(W)</span></td>
+                    <td>Guarantees shortest path in unweighted graphs</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 4. Trees, Heaps & Graphs -->
+    <section id="trees-graphs">
+        <div class="section-header">
+            <span class="section-num">4</span>
+            <h2>Trees, Heaps &amp; Graphs</h2>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>Algorithm / Pattern</th>
+                    <th>Physical Action</th>
+                    <th>Core Invariant / Trigger</th>
+                    <th>Time</th>
+                    <th>Space</th>
+                    <th>Key Trade-off</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="algo-name">DFS (Pre / In / Post)</td>
+                    <td>Dive deep down one branch before backtracking (LIFO)</td>
+                    <td>Recursion stack or explicit stack tracks path</td>
+                    <td><span class="complexity">O(V + E)</span></td>
+                    <td><span class="complexity">O(H)</span></td>
+                    <td>Low memory on deep/narrow trees; doesn&rsquo;t find shortest path</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Heap / Priority Queue</td>
+                    <td>Bubble smallest/largest item to root in a tree array</td>
+                    <td>Root is always the extreme (<code>min</code> or <code>max</code>)</td>
+                    <td><span class="complexity">O(N log K)</span></td>
+                    <td><span class="complexity">O(K)</span></td>
+                    <td>Ideal for &ldquo;Top K&rdquo; or streaming median problems</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Dijkstra&rsquo;s Algorithm</td>
+                    <td>Greedily expand closest unvisited node via Min-Heap</td>
+                    <td>Shortest distance to popped node is finalized</td>
+                    <td><span class="complexity">O((V + E) log V)</span></td>
+                    <td><span class="complexity">O(V)</span></td>
+                    <td>Finds shortest weighted path; fails on negative weights</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">Topological Sort</td>
+                    <td>Peel off nodes with <code>in-degree == 0</code> in a DAG</td>
+                    <td>Every dependency appears before its dependent</td>
+                    <td><span class="complexity">O(V + E)</span></td>
+                    <td><span class="complexity">O(V)</span></td>
+                    <td>Detects cycles and resolves build/course dependencies</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 5. Recursion, Backtracking & Dynamic Programming -->
+    <section id="dp-backtracking">
+        <div class="section-header">
+            <span class="section-num">5</span>
+            <h2>Recursion, Backtracking &amp; Dynamic Programming</h2>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>Pattern</th>
+                    <th>Physical Action</th>
+                    <th>Core Invariant / Trigger</th>
+                    <th>Time</th>
+                    <th>Space</th>
+                    <th>Key Trade-off</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="algo-name">Backtracking</td>
+                    <td>Choose &rarr; Explore &rarr; <strong>Undo choice</strong></td>
+                    <td>Explores decision tree, pruning invalid branches</td>
+                    <td><span class="complexity">O(2<sup>N</sup>) or O(N!)</span></td>
+                    <td><span class="complexity">O(N)</span></td>
+                    <td>Finds all valid combinations/paths; exponential cost</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">DP (Memoization)</td>
+                    <td>Top-down recursion + cache results in a table</td>
+                    <td>Overlapping subproblems computed only once</td>
+                    <td><span class="complexity">O(States &times; Transitions)</span></td>
+                    <td><span class="complexity">O(States)</span></td>
+                    <td>Intuitive to write from recursion; uses call stack</td>
+                </tr>
+                <tr>
+                    <td class="algo-name">DP (Tabulation)</td>
+                    <td>Bottom-up loop filling a 1D/2D array from base cases</td>
+                    <td>Iterative state transition (<code>dp[i]</code> from <code>dp[i-1]</code>)</td>
+                    <td><span class="complexity">O(States &times; Transitions)</span></td>
+                    <td><span class="complexity">O(1)&ndash;O(N)</span></td>
+                    <td>Eliminates recursion overhead; allows space optimization</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        DSA Master Mental Blueprint &bull; Single-File Offline Reference
+    </footer>
+</div>
+
+<script>
+    const filterInput = document.getElementById("filterInput");
+    const rows = document.querySelectorAll("tbody tr");
+    const sections = document.querySelectorAll("section");
+
+    filterInput.addEventListener("input", () => {
+        const query = filterInput.value.trim().toLowerCase();
+
+        rows.forEach((row) => {
+            const text = row.textContent.toLowerCase();
+            row.classList.toggle("hidden-row", query !== "" && !text.includes(query));
+        });
+
+        sections.forEach((section) => {
+            const visibleRows = section.querySelectorAll("tbody tr:not(.hidden-row)");
+            section.style.display = visibleRows.length === 0 ? "none" : "";
+        });
+    });
+</script>
+</body>
+</html>
