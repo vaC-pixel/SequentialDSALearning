@@ -1,15 +1,17 @@
 import java.util.Scanner;
-
 public class ContainerWithMostWater {
+
+    //#Intuition  :
     //Container With Most Water (Medium)
     //The Goal: Given an array of heights representing vertical lines,
     //find two lines that together with the x-axis form a container that
     // holds the most water.
 
-    //The Two-Pointer Mechanics:
+    //The Two-Pointer Mechanics :
     // Start with pointers at both ends (0 and n - 1). Calculate the area,
     // then greedily move the pointer pointing to the shorter line inward,
     // hoping to find a taller line.
+
     public static  void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the size of an array : ");
